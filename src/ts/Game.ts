@@ -2,6 +2,7 @@ import 'phaser';
 import Boot from "./Scenes/Boot";
 import Preloader from "./Scenes/Preloader";
 import MainMenu from "./Scenes/MainMenu";
+import TestScene from "./Scenes/TestScene";
 import SplashScreen from "./Scenes/SplashScreen";
 import Utilities from "./Utilities";
 import MainGameJewel from "./Scenes/MainGame_Jewel";
@@ -12,13 +13,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 	width: 400 > window.innerWidth ? window.innerWidth : 400,
 	height: window.innerHeight,
 	type: Phaser.AUTO,
-	// backgroundColor: "#009FAF",
 	transparent: true,
-	// mode: Phaser.Scale.CENTER_BOTH,
-	// scale: {
-	// 	mode: Phaser.Scale.HEIGHT_CONTROLS_WIDTH ,
-	// 	autoCenter: Phaser.Scale.FIT
-	// },
 	parent: "content",
 	title: "Juego de Memotest para Saphirus"
 };
@@ -29,14 +24,17 @@ export default class Game extends Phaser.Game {
 
 		super(config);
 
-		this.scene.add(Boot.Name, Boot);
+		// this.scene.add(Boot.Name, Boot);
 		this.scene.add(Preloader.Name, Preloader);
 		this.scene.add(SplashScreen.Name, SplashScreen);
+		// this.scene.add(TestScene.Name, TestScene);
 		this.scene.add(MainMenu.Name, MainMenu);
-		this.scene.add(MainGameJewel.Name, MainGameJewel);
-		// this.scene.add(MainGameMemo.Name, MainGameMemo);
+
+		// this.scene.add(MainGameJewel.Name, MainGameJewel);
+		this.scene.add(MainGameMemo.Name, MainGameMemo);
+
 		this.scene.add(MainSettings.Name, MainSettings);
-		this.scene.start(Boot.Name);
+		this.scene.start(Preloader.Name);
 		
 	}
 }
@@ -45,6 +43,7 @@ export default class Game extends Phaser.Game {
  * Workaround for inability to scale in Phaser 3.
  * From http://www.emanueleferonato.com/2018/02/16/how-to-scale-your-html5-games-if-your-framework-does-not-feature-a-scale-manager-or-if-you-do-not-use-any-framework/
  */
+
 function resize(game: Game): void {
 	// const canvas = document.querySelector("canvas");
 	// canvas.style.width = width + "px";

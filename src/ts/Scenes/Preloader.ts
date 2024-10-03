@@ -12,9 +12,11 @@ export default class Preloader extends Phaser.Scene {
 
 		this.load.path = "assets/";
 		this.load.spritesheet('diamonds', 'diamonds32x24x5.png', { frameWidth: 32, frameHeight: 24 });
+
 		this.load.spritesheet("cards", "spritesheet_cards_2x_new.png", { frameWidth: 58 * 2, frameHeight: 58 * 2 });
 
 		this.load.image("progress_frame", "progress_bar_frame.png");
+		
 		this.load.image("progress_bar", "progress_bar_full.png");
 		this.load.image("powerBy", "powerBy_3x.png");
 		this.load.svg("powerBySvg", "powerBy400x30.svg", {width:400, height:30, scale: 1});
