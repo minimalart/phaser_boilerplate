@@ -3,6 +3,8 @@ import Boot from "./Scenes/Boot";
 import Preloader from "./Scenes/Preloader";
 import MainMenu from "./Scenes/MainMenu";
 import TestScene from "./Scenes/TestScene";
+import FlyScene from "./Scenes/FlyScene";
+
 import SplashScreen from "./Scenes/SplashScreen";
 import Utilities from "./Utilities";
 import MainGameJewel from "./Scenes/MainGame_Jewel";
@@ -15,7 +17,13 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	transparent: true,
 	parent: "content",
-	title: "Juego de Memotest para Saphirus"
+	title: "Juego de Memotest para Saphirus",
+	physics: {
+		default: 'arcade',
+		arcade: {
+			debug: false
+		}
+	}	
 };
 
 export default class Game extends Phaser.Game {
@@ -27,11 +35,12 @@ export default class Game extends Phaser.Game {
 		// this.scene.add(Boot.Name, Boot);
 		this.scene.add(Preloader.Name, Preloader);
 		this.scene.add(SplashScreen.Name, SplashScreen);
-		// this.scene.add(TestScene.Name, TestScene);
-		this.scene.add(MainMenu.Name, MainMenu);
-
+		// this.scene.add(MainMenu.Name, MainMenu);
+		
 		// this.scene.add(MainGameJewel.Name, MainGameJewel);
-		this.scene.add(MainGameMemo.Name, MainGameMemo);
+		// this.scene.add(MainGameMemo.Name, MainGameMemo);
+		// this.scene.add(TestScene.Name, TestScene);
+		this.scene.add(FlyScene.Name, FlyScene);
 
 		this.scene.add(MainSettings.Name, MainSettings);
 		this.scene.start(Preloader.Name);

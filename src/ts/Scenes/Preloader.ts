@@ -37,7 +37,10 @@ export default class Preloader extends Phaser.Scene {
 		this.load.audio("music", "music.mp3");
 		this.load.audio("coinsplash", "coinsplash.mp3");
 		this.load.audio("cardFlip", "cardFlip.wav");
-		
+
+		this.load.image("finger", "finger.png");	
+		this.load.image("fly1", "fly1.png");	
+		this.load.image("fly2", "fly2.png");
 
 		// You should remove this logic; this is only included here to show off the progress bar.
 
