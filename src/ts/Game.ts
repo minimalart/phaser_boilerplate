@@ -2,7 +2,7 @@ import 'phaser';
 import Boot from "./Scenes/Boot";
 import Preloader from "./Scenes/Preloader";
 import MainMenu from "./Scenes/MainMenu";
-import TestScene from "./Scenes/TestScene";
+import MainGameDables from "./Scenes/MainGame_Dables";
 import SplashScreen from "./Scenes/SplashScreen";
 import Utilities from "./Utilities";
 import MainGameJewel from "./Scenes/MainGame_Jewel";
@@ -10,7 +10,7 @@ import MainGameMemo from "./Scenes/MainGame_Memo";
 import MainSettings from "./Scenes/MainSettings";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
-	width: 400 > window.innerWidth ? window.innerWidth : 400,
+	width: 460 > window.innerWidth ? window.innerWidth : 460,
 	height: window.innerHeight,
 	type: Phaser.AUTO,
 	transparent: true,
@@ -27,11 +27,11 @@ export default class Game extends Phaser.Game {
 		// this.scene.add(Boot.Name, Boot);
 		this.scene.add(Preloader.Name, Preloader);
 		this.scene.add(SplashScreen.Name, SplashScreen);
-		// this.scene.add(TestScene.Name, TestScene);
 		this.scene.add(MainMenu.Name, MainMenu);
-
+		
 		// this.scene.add(MainGameJewel.Name, MainGameJewel);
-		this.scene.add(MainGameMemo.Name, MainGameMemo);
+		// this.scene.add(MainGameMemo.Name, MainGameMemo);
+		this.scene.add(MainGameDables.Name, MainGameDables);
 
 		this.scene.add(MainSettings.Name, MainSettings);
 		this.scene.start(Preloader.Name);
@@ -52,7 +52,7 @@ function resize(game: Game): void {
 		
 	// },1000)
 
-	let width = 400;
+	let width = 460;
 	if (width > window.innerWidth) {
 		width = window.innerWidth;
 	}

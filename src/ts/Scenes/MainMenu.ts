@@ -57,9 +57,6 @@ export default class MainMenu extends Phaser.Scene {
 		}, this);
 
 
-		const detail1 = this.add.image(this.cameras.main.centerX, (this.cameras.main.centerY * 0.6) + 40, "cards", 1).setOrigin(0.5).setScale(0);
-		const detail2 = this.add.image(this.cameras.main.centerX, (this.cameras.main.centerY * 0.6) + 40, "cards", 1).setOrigin(0.5).setScale(0);
-
 		const logo = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY * 0.5, "logo").setScale(0);
 		logo.setOrigin(0.5, 0);
 
@@ -80,53 +77,7 @@ export default class MainMenu extends Phaser.Scene {
 			duration: 600,
 			ease: "Bounce.easeOut"
 		});
-		const baseX = detail1.x
-		const baseY = detail1.y
-		this.tweens.add({
-			targets: detail1,
-			scale: 0.6,
-			x: baseX - 100,
-			y: baseY - 20,
-			angle: 45,
-			delay:600,
-			duration: 600,
-			ease: "Bounce.easeOut"
-		});
 		
-		this.tweens.add({
-			targets: detail2,
-			scale: 0.6,
-			x: baseX + 80,
-			y: baseY - 20,
-			angle: 45,
-			delay:600,
-			duration: 600,
-			ease: "Bounce.easeOut"
-		});
-
-		this.tweens.add({
-			targets: [detail2],
-			scale: 0.65,
-			delay:1200,
-			angle: 40,
-			duration: 300,
-			ease: "Power1",
-			yoyo: true,
-			loop: -1
-		});
-
-		this.tweens.add({
-			targets: [detail1],
-			scale: 0.65,
-			delay:1300,
-			angle: 42,
-			duration: 300,
-			ease: "Power1",
-			yoyo: true,
-			loop: -1
-		});
-
-
 
 		playButton.setOrigin(0.5, 0.5);
 		playButton.setInteractive();
