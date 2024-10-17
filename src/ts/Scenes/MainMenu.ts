@@ -60,7 +60,7 @@ export default class MainMenu extends Phaser.Scene {
 		const logo = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY * 0.5, "logo").setScale(0);
 		logo.setOrigin(0.5, 0);
 
-		const playButton = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY * 1.2, "play").setScale(0);
+		const playButton = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY * 1.2, "play").setScale(0).setTint(0x555555);
 
 		this.tweens.add({
 			targets: logo,
@@ -81,8 +81,8 @@ export default class MainMenu extends Phaser.Scene {
 
 		playButton.setOrigin(0.5, 0.5);
 		playButton.setInteractive();
-		playButton.on("pointerover", () => { playButton.setTint(0xeeeeee); }, this);
-		playButton.on("pointerout", () => { playButton.setTint(0xffffff); }, this);
+		playButton.on("pointerover", () => { playButton.setTint(0x55AA55); }, this);
+		playButton.on("pointerout", () => { playButton.setTint(0x555555); }, this);
 		playButton.on("pointerdown", () => { this.scene.start(MainGame.Name); }, this);
 
 		const powerBy = this.add.image(this.cameras.main.centerX * 2, (this.cameras.main.centerY * 2), "powerBySvg");
@@ -91,6 +91,83 @@ export default class MainMenu extends Phaser.Scene {
 			if(window) window.open("https://minimalart.co/", "_blank");
 		});
 		powerBy.setOrigin(1, 1);
+
+
+		// Test Logic
+		const numberPerCard = 4;
+		const baseCards = 3;
+		const cards = [];
+		let lastNumber = 0;
+		
+		for (let i = 0; i < baseCards; i++) {
+			const card = [];
+			for (let k = 0; k < numberPerCard; k++) {
+				let plus = 1;
+				if(i > 0) plus = plus - i
+				const number = (k + plus) + (i*numberPerCard)
+				card.push(number)
+				if(lastNumber < number ) lastNumber = number;
+				const isLastNumberOnLastCard = i === baseCards - 1 && k === numberPerCard - 1;
+				if(isLastNumberOnLastCard) card[card.length - 1] = 1
+			}
+			cards.push(card)
+		}
+		
+		const newNumber = lastNumber;
+		for (let i = 0; i < numberPerCard -2 ; i++) {
+			const card = [];
+			
+			for (let k = 0; k < baseCards; k++) {
+				card.push(cards[k][i+1])
+			}
+			card.push(newNumber)
+			for (let k = (baseCards); k < numberPerCard - 1 ; k++) {
+				lastNumber++;
+				card.push(lastNumber)
+			}
+			cards.push(card)
+		}
+
+		const newCard = [newNumber]
+		for (let i = 0; i < baseCards; i++) {
+			newCard.push(cards[i][0])
+		}
+		while(newCard.length < numberPerCard){
+			lastNumber++;
+			newCard.push(lastNumber)
+		}
+		cards.push(newCard)
+
+		if(numberPerCard > baseCards * 2){
+			const tempCards = [...cards].map(_ => _.reverse())
+			for (let i = 0; i < numberPerCard -2 ; i++) {
+				const card = [];
+				
+				for (let k = 0; k < baseCards; k++) {
+					card.push(tempCards[k][i+1])
+				}
+				card.push(newNumber)
+				while(card.length < numberPerCard){
+					lastNumber++;
+					card.push(lastNumber)
+				}
+				cards.push(card)
+			}
+		}
+		// const sharedNumbers = []
+		// for (let i = 0; i < numberPerCard; i++) {
+		// 	const numbers = []
+		// 	for (let k = 0; k < cards.length; k++) {
+		// 		const number = cards[k][i]
+		// 		if(numbers.indexOf(number) === -1) numbers.push(number)
+		// 	}
+		// 	sharedNumbers.push(numbers)
+		// }
+		// console.log("sharedNumbers",sharedNumbers)
+
+		console.log("cards",cards)
+
+
 	}
 
 	public update(): void {

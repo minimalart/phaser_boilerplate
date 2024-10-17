@@ -19,8 +19,12 @@ export default class Preloader extends Phaser.Scene {
 		
 		this.load.image("progress_bar", "progress_bar_full.png");
 		this.load.image("powerBy", "powerBy_3x.png");
+		
 		this.load.image("dables_card", "dables_card.png");
+
 		this.load.spritesheet("animated_arrow", "arrow.png", { frameWidth: 16, frameHeight: 16 });
+		
+		this.load.spritesheet("dables_images","spritesheet.png", { frameWidth: 1800 / 12, frameHeight: 150 })
 
 		this.load.svg("powerBySvg", "powerBy400x30.svg", {width:460, height:30, scale: 1});
 
